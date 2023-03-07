@@ -1,4 +1,5 @@
-let mut input = String::new();
+fn main() {
+    let mut input = String::new();
     io::stdin()
         .read_line(&mut input)
         .ok()
@@ -8,3 +9,4 @@ let mut input = String::new();
         .map(|x| x.parse().unwrap())
         .collect();
     println!("{} {}", x[0] * x[1], 2 * x[0] + 2 * x[1])
+}
