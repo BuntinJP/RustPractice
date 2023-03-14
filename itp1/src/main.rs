@@ -1,15 +1,11 @@
+use std::io::Read;
 fn main() {
     let mut s = String::new();
-    std::io::stdin().read_line(&mut s).unwrap();
-    let out = s
-        .chars()
-        .map(|c| {
-            if c.is_lowercase() {
-                c.to_uppercase().to_string()
-            } else {
-                c.to_lowercase().to_string()
-            }
-        })
-        .collect::<String>();
-    print!("{}", out);
+    std::io::stdin().read_to_string(&mut s).unwrap();
+    s = s.trim().to_lowercase();
+    let a = (b'a'..b'z' + 1).map(|c| c as char);
+    let n = a.map(|x| (x, s.chars().filter(|&c| c == x).count()));
+    for i in n {
+        println!("{} : {}", i.0, i.1);
+    }
 }
