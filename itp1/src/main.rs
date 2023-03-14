@@ -1,11 +1,10 @@
-use std::io::Read;
+use std::io::{self, BufRead};
 fn main() {
-    let mut s = String::new();
-    std::io::stdin().read_to_string(&mut s).unwrap();
-    s = s.trim().to_lowercase();
-    let a = (b'a'..b'z' + 1).map(|c| c as char);
-    let n = a.map(|x| (x, s.chars().filter(|&c| c == x).count()));
-    for i in n {
-        println!("{} : {}", i.0, i.1);
-    }
+    let st = io::stdin();
+    let mut l = st.lock().lines();
+    let s = l.next().unwrap().unwrap();
+    let p = l.next().unwrap().unwrap();
+    let mut s2 = s.clone();
+    s2.push_str(&s);
+    println!("{}", if s2.contains(&p) { "Yes" } else { "No" });
 }
